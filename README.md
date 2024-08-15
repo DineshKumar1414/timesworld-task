@@ -1,5 +1,4 @@
-# Deployed in
-https://DineshKumar1414.github.io/timesworld-task
+
 
 # Getting Started with Create React App
 
