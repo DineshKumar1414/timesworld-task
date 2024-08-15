@@ -46,8 +46,8 @@ const Home = () => {
         <Nav className="ms-auto">
      
       <div className="d-none d-md-flex">
-        <Nav.Link href="#countries">Asia</Nav.Link>
-        <Nav.Link href="#countries">Europe</Nav.Link>
+        <Nav.Link >Asia</Nav.Link>
+        <Nav.Link >Europe</Nav.Link>
       </div>
 
      
