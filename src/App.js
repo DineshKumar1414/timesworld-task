@@ -7,7 +7,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/timesworld-task" element={<LoginForm />} />
+        <Route exact path="/" element={<LoginForm />} />
         <Route path="/home" element={<Home />} />
       </Routes>
     </Router>
