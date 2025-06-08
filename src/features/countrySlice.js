@@ -13,11 +13,13 @@ export const fetchCountries = createAsyncThunk(
 
 export const countrySlice = createSlice({
   name: 'country',
-  initialState: {
-    countries: [],
-    visibleCountries: [],
-    limit: 9, // Number of countries to show initially and on each load
-  },
+ initialState: {
+  countries: [],
+  visibleCountries: [],
+  selectedRegion: null,
+  limit: 9,
+},
+
   reducers: {
     loadMoreCountries: (state) => {
       const remaining = state.countries.slice(
@@ -26,6 +28,12 @@ export const countrySlice = createSlice({
       );
       state.visibleCountries = [...state.visibleCountries, ...remaining];
     },
+    filterByRegion: (state, action) => {
+    const region = action.payload;
+    state.selectedRegion = region;
+    const filtered = state.countries.filter(c => region ? c.region === region : true);
+    state.visibleCountries = filtered.slice(0, state.limit);
+  },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCountries.fulfilled, (state, action) => {
@@ -35,6 +43,6 @@ export const countrySlice = createSlice({
   },
 });
 
-export const { loadMoreCountries } = countrySlice.actions;
+export const { loadMoreCountries, filterByRegion } = countrySlice.actions;
 
 export default countrySlice.reducer;

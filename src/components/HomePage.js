@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCountries, loadMoreCountries } from '../features/countrySlice';
+import { fetchCountries, loadMoreCountries, filterByRegion } from '../features/countrySlice';
 import { Container, Row, Col, Button, Card, Nav, NavDropdown, Navbar } from 'react-bootstrap';
 import Slider from './Slider';
 import Footer from './Footer';
@@ -34,6 +34,11 @@ const Home = () => {
     dispatch(loadMoreCountries());
   };
 
+  const handleFilter = (region) => {
+  dispatch(filterByRegion(region));
+};
+
+
   return (
     <Container>
       <Navbar bg="light" expand="lg">
@@ -46,16 +51,18 @@ const Home = () => {
         <Nav className="ms-auto">
      
       <div className="d-none d-md-flex">
-        <Nav.Link >Asia</Nav.Link>
-        <Nav.Link >Europe</Nav.Link>
+       <Nav.Link onClick={() => handleFilter('Asia')}>Asia</Nav.Link>
+       <Nav.Link onClick={() => handleFilter('Europe')}>Europe</Nav.Link>
+
       </div>
 
      
       <div className="d-flex d-md-none">
-        <NavDropdown title="All" id="basic-nav-dropdown">
-          <NavDropdown.Item href="#asia">Asia</NavDropdown.Item>
-          <NavDropdown.Item href="#europe">Europe</NavDropdown.Item>
-        </NavDropdown>
+       <NavDropdown title={'All'} id="basic-nav-dropdown">
+  <NavDropdown.Item onClick={() => handleFilter(null)}>All</NavDropdown.Item>
+  <NavDropdown.Item onClick={() => handleFilter('Asia')}>Asia</NavDropdown.Item>
+  <NavDropdown.Item onClick={() => handleFilter('Europe')}>Europe</NavDropdown.Item>
+</NavDropdown>
       </div>
     </Nav>
         </Navbar.Collapse>

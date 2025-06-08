@@ -1,28 +1,24 @@
-import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import './SliderCustom.css'; 
 
 const Slider = () => {
   const images = [
-    'https://via.placeholder.com/800x400?text=Slide+1',
-    'https://via.placeholder.com/800x400?text=Slide+2',
-    'https://via.placeholder.com/800x400?text=Slide+3',
+    'https://picsum.photos/id/1018/800/400',
+    'https://picsum.photos/id/1015/800/400',
+    'https://picsum.photos/id/1025/800/400',
   ];
 
   return (
     <div className="carousel-container">
-      <Carousel data-bs-theme="dark">
-        {images.map((image, index) => (
-          <Carousel.Item key={index}>
-            <img
-              className="d-block w-100"
-              src={image}
-              alt={`Slide ${index + 1}`}
-            />
-          </Carousel.Item>
-        ))}
-      </Carousel>
+    <Carousel controls={true} indicators={true} className="carousel-wrapper">
+  {images.map((img, index) => (
+    <Carousel.Item key={index}>
+      <img src={img} alt={`Slide ${index}`} />
+    </Carousel.Item>
+  ))}
+</Carousel>
+
+
     </div>
   );
 };
